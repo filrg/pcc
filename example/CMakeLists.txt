@@ -21,4 +21,6 @@ endfunction()
 
 add_example(encode)
 add_example(decode)
+add_example(multiple_encode)
+add_example(multiple_decode)
 add_folders(Example)

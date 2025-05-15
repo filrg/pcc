@@ -2,6 +2,7 @@
 
 #include "pcc/pcc_export.h"
 #include <pcc/def.h>
+#include <pcc/point_cloud.h>
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -12,16 +13,27 @@ extern "C"
 
   PCC_EXPORT void pcc_encode(const float         *positions,
                              const unsigned char *colors,
-                             const uint32_t       num_points,
+                             uint32_t             num_points,
                              const float          error,
                              char               **wbuff,
                              size_t              *wsize);
 
   PCC_EXPORT void pcc_decode(const char     *rbuff,
-                             const size_t    rsize,
+                             size_t          rsize,
                              float         **positions,
                              unsigned char **colors,
                              uint32_t       *num_points);
+
+  PCC_EXPORT void pcc_multiple_encode(const pcc_point_cloud_t *pcds,
+                                      size_t  num_pcds,
+                                      float   error,
+                                      char  **wbuff,
+                                      size_t *wsize);
+
+  PCC_EXPORT void pcc_multiple_decode(const char         *rbuff,
+                                      size_t              rsize,
+                                      pcc_point_cloud_t **pcds_out,
+                                      size_t *num_pcds_out);
 
 #ifdef __cplusplus
 } // extern "C"
