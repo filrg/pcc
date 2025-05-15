@@ -2,6 +2,7 @@
 #include <pcc/octree.h>
 #include <stdlib.h>
 #include <zstd.h>
+#include <string.h>
 
 static char *pcc_compress_with_zstd_s(const char *data,
                                       size_t      size,
