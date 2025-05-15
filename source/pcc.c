@@ -180,10 +180,12 @@ void pcc_multiple_encode(const pcc_point_cloud_t *pcds,
   }
 
   // Write header (num_pcds)
-  uint32_t *header = (uint32_t *)combined;
-  *header          = (uint32_t)num_pcds;
+  // uint32_t *header = (uint32_t *)combined;
+  // *header          = (uint32_t)num_pcds;
+  uint32_t tempo = (uint32_t)num_pcds;
+  memcpy(combined, &tempo, sizeof(uint32_t));
 
-  size_t offset    = sizeof(uint32_t);
+  size_t offset = sizeof(uint32_t);
 
   // Write sizes + buffers
   for (size_t i = 0; i < num_pcds; i++)
@@ -232,7 +234,9 @@ void pcc_multiple_decode(const char         *rbuff,
   const char *ptr      = decompressed;
   const char *end      = decompressed + decompressed_size;
 
-  uint32_t    num_pcds = *(uint32_t *)ptr;
+  // uint32_t    num_pcds = *(uint32_t *)ptr;
+  uint32_t    num_pcds = 0;
+  memcpy(&num_pcds, ptr, sizeof(uint32_t));
   ptr += sizeof(uint32_t);
 
   if (num_pcds == 0)
