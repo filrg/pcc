@@ -25,10 +25,6 @@ jobs:
     - name: Lint
       run: cmake -D FORMAT_COMMAND=clang-format-18 -P cmake/lint.cmake
 
-        #     - name: Spell check
-        #       if: always()
-        #       run: cmake -P cmake/spell.cmake
-
   coverage:
     needs: [lint]
 
