@@ -126,14 +126,14 @@ jobs:
         sudo update-alternatives --install
         /usr/bin/clang-tidy clang-tidy
         /usr/bin/clang-tidy-18 180
-
-       if: matrix.os == 'ubuntu-22.04'
-       run: >-
-         sudo apt-get install clang-tidy-15 cppcheck -y -q
+      
+      if: matrix.os == 'ubuntu-22.04'
+      run: >-
+        sudo apt-get install clang-tidy-15 cppcheck -y -q
  
-         sudo update-alternatives --install
-         /usr/bin/clang-tidy clang-tidy
-         /usr/bin/clang-tidy-15 180
+        sudo update-alternatives --install
+        /usr/bin/clang-tidy clang-tidy
+        /usr/bin/clang-tidy-15 180
 
     - name: Configure
       shell: pwsh
