@@ -13,11 +13,10 @@ endif()
 
 # ---- Tests ----
 
-add_executable(pcc_test source/pcc_test.c)
-target_link_libraries(pcc_test PRIVATE pcc::pcc)
-target_compile_features(pcc_test PRIVATE c_std_99)
+set(ASSETS ${CMAKE_SOURCE_DIR}/assets)
 
-add_test(NAME pcc_test COMMAND pcc_test)
+add_test(NAME pcc_encode COMMAND encode ${ASSETS}/longdress0000.ply 2 longdress0000.bin)
+add_test(NAME pcc_decode COMMAND decode ${ASSETS}/longdress0000.bin longdress0000_rec.ply 1)
 
 # ---- End-of-file commands ----
 

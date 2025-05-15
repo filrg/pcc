@@ -18,7 +18,7 @@ typedef struct
 
 static inline float pcc_absf(float value)
 {
-  return (value < 0.0f) ? -value : value;
+  return (value < 0.0F) ? -value : value;
 }
 
 static inline pcc_vec3f_t pcc_vec3f_add(const pcc_vec3f_t vec1,
@@ -53,7 +53,7 @@ pcc_vec3f_scale_reverse(const float scalar, const pcc_vec3f_t vec)
 static inline int pcc_vec3f_equal(const pcc_vec3f_t vec1,
                                   const pcc_vec3f_t vec2)
 {
-  const float epsilon = 1e-6f;
+  const float epsilon = PCC_FLOAT_ZERO;
   return (pcc_absf(vec1.x - vec2.x) < epsilon) &&
          (pcc_absf(vec1.y - vec2.y) < epsilon) &&
          (pcc_absf(vec1.z - vec2.z) < epsilon);
@@ -71,8 +71,8 @@ static inline float pcc_vec3f_dot(const pcc_vec3f_t vec1,
   return (vec1.x * vec2.x) + (vec1.y * vec2.y) + (vec1.z * vec2.z);
 }
 
-static inline float pcc_vec3f_distance(const pcc_vec3f_t point1,
-                                       const pcc_vec3f_t point2)
+static inline float pcc_vec3f_distance2(const pcc_vec3f_t point1,
+                                        const pcc_vec3f_t point2)
 {
   pcc_vec3f_t sub = {0};
   sub             = pcc_vec3f_sub(point1, point2);
@@ -84,11 +84,17 @@ pcc_vec3f_octant(const pcc_vec3f_t point, const pcc_vec3f_t center)
 {
   unsigned char octant = 0;
   if (point.x > center.x)
+  {
     octant |= 4;
+  }
   if (point.y > center.y)
+  {
     octant |= 2;
+  }
   if (point.z > center.z)
+  {
     octant |= 1;
+  }
   return octant;
 }
 

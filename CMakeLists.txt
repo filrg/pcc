@@ -7,18 +7,29 @@ project(
     VERSION 0.1.0
     DESCRIPTION "A point cloud compression tool"
     HOMEPAGE_URL "https://filrg.github.io/pcc"
-    LANGUAGES C
+    LANGUAGES C CXX
 )
 
 include(cmake/variables.cmake)
 
 # ---- Declare library ----
 
-add_library(
-    pcc_pcc
-    source/pcc.c
-)
+file(GLOB PCC_SHARED_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/*)
+
+add_library(pcc_pcc ${PCC_SHARED_SOURCE})
 add_library(pcc::pcc ALIAS pcc_pcc)
+
+target_include_directories(pcc_pcc PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/source/internal
+)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(zstd REQUIRED IMPORTED_TARGET libzstd)
+
+target_link_libraries(
+    pcc_pcc PRIVATE
+    PkgConfig::zstd
+    )
 
 include(GenerateExportHeader)
 generate_export_header(
@@ -52,7 +63,7 @@ target_include_directories(
     "\$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/export>"
 )
 
-target_compile_features(pcc_pcc PUBLIC c_std_99)
+target_compile_features(pcc_pcc PUBLIC c_std_17)
 
 # ---- Install rules ----
 
