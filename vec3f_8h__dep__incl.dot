@@ -10,4 +10,6 @@ digraph "vec3f.h"
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="point_cloud.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$point__cloud_8h.html",tooltip=" "];
   Node3 -> Node2 [id="edge3_Node000003_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 -> Node4 [id="edge4_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="pcc.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$pcc_8h.html",tooltip=" "];
 }
