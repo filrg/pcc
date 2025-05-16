@@ -121,91 +121,61 @@ void pcc_multiple_encode(const pcc_point_cloud_t *pcds,
                          char                   **wbuff,
                          size_t                  *wsize)
 {
-  char  **raw_buffers = malloc(num_pcds * sizeof(char *));
-  size_t *raw_sizes   = malloc(num_pcds * sizeof(size_t));
-  if (!raw_buffers || !raw_sizes)
-  {
-    free(raw_buffers);
-    free(raw_sizes);
-    *wbuff = NULL;
-    *wsize = 0;
-    return;
-  }
+  size_t  lossly_total_len = 0;
+  char   *ptr              = NULL;
+  // stuf needs to be free
+  char  **lossly_arr       = NULL;
+  size_t *lossly_len_arr   = NULL;
+  char   *lossly_total     = NULL;
 
-  size_t total_size = sizeof(uint32_t); // for num_pcds header
+  lossly_arr     = (char **)malloc(sizeof(char *) * num_pcds);
+  lossly_len_arr = (size_t *)malloc(sizeof(size_t) * num_pcds);
 
-  // Serialize octree (without compression) for each point cloud
+  lossly_total_len += sizeof(num_pcds);
+
   for (size_t i = 0; i < num_pcds; i++)
   {
-    pcc_octree_t oct = {0};
+    lossly_arr[i]     = NULL;
+    lossly_len_arr[i] = 0;
+
+    pcc_octree_t oct  = {0};
+
     pcc_octree_init(&oct);
 
-    // Serialize octree from point cloud with given error
     oct.read_from_point_cloud(&oct, pcds[i], error);
+    oct.write_to_buff(&oct, &(lossly_arr[i]), &(lossly_len_arr[i]));
 
-    char  *buff     = NULL;
-    size_t buff_len = 0;
-    oct.write_to_buff(&oct, &buff, &buff_len);
+    lossly_total_len +=
+        sizeof(lossly_len_arr[i]) + lossly_len_arr[i];
 
     pcc_octree_destroy(&oct);
-
-    if (!buff)
-    {
-      // Cleanup previously allocated buffers
-      for (size_t j = 0; j < i; j++)
-        free(raw_buffers[j]);
-      free(raw_buffers);
-      free(raw_sizes);
-      *wbuff = NULL;
-      *wsize = 0;
-      return;
-    }
-
-    raw_buffers[i] = buff;
-    raw_sizes[i]   = buff_len;
-    total_size += sizeof(uint32_t) + buff_len;
   }
 
-  // Allocate buffer for combined raw serialized data with header
-  char *combined = malloc(total_size);
-  if (!combined)
-  {
-    for (size_t i = 0; i < num_pcds; i++)
-      free(raw_buffers[i]);
-    free(raw_buffers);
-    free(raw_sizes);
-    *wbuff = NULL;
-    *wsize = 0;
-    return;
-  }
+  lossly_total = (char *)malloc(lossly_total_len);
+  ptr          = lossly_total;
 
-  // Write header (num_pcds)
-  // uint32_t *header = (uint32_t *)combined;
-  // *header          = (uint32_t)num_pcds;
-  uint32_t tempo = (uint32_t)num_pcds;
-  memcpy(combined, &tempo, sizeof(uint32_t));
+  memcpy(ptr, &num_pcds, sizeof(num_pcds));
+  ptr += sizeof(num_pcds);
 
-  size_t offset = sizeof(uint32_t);
-
-  // Write sizes + buffers
   for (size_t i = 0; i < num_pcds; i++)
   {
-    uint32_t *size_ptr = (uint32_t *)(combined + offset);
-    *size_ptr          = (uint32_t)raw_sizes[i];
-    offset += sizeof(uint32_t);
+    memcpy(ptr, &(lossly_len_arr[i]), sizeof(lossly_len_arr[i]));
+    ptr += sizeof(lossly_len_arr[i]);
 
-    memcpy(combined + offset, raw_buffers[i], raw_sizes[i]);
-    offset += raw_sizes[i];
-
-    free(raw_buffers[i]);
+    memcpy(ptr, lossly_arr[i], lossly_len_arr[i]);
+    ptr += lossly_len_arr[i];
   }
 
-  free(raw_buffers);
-  free(raw_sizes);
+  *wbuff = pcc_compress_with_zstd_s(
+      lossly_total, lossly_total_len, wsize);
 
-  // Compress once for the whole combined buffer
-  *wbuff = pcc_compress_with_zstd_s(combined, total_size, wsize);
-  free(combined);
+  free(lossly_total);
+  free(lossly_len_arr);
+  for (size_t i = 0; i < num_pcds; i++)
+  {
+    free(lossly_arr[i]);
+  }
+  free(lossly_arr);
 }
 
 void pcc_multiple_decode(const char         *rbuff,
@@ -213,96 +183,43 @@ void pcc_multiple_decode(const char         *rbuff,
                          pcc_point_cloud_t **pcds_out,
                          size_t             *num_pcds_out)
 {
-  size_t decompressed_size = 0;
-  char  *decompressed =
-      pcc_decompress_with_zstd_s(rbuff, rsize, &decompressed_size);
-  if (!decompressed)
+  char  *ptr              = NULL;
+
+  char  *lossly_total     = NULL;
+  size_t lossly_total_len = 0;
+  size_t num_pcds         = 0;
+
+  lossly_total =
+      pcc_decompress_with_zstd_s(rbuff, rsize, &lossly_total_len);
+  ptr = lossly_total;
+
+  memcpy(&num_pcds, ptr, sizeof(num_pcds));
+  ptr += sizeof(num_pcds);
+
+  *pcds_out = (pcc_point_cloud_t *)malloc(sizeof(pcc_point_cloud_t) *
+                                          num_pcds);
+
+  for (size_t i = 0; i < num_pcds; i++)
   {
-    *pcds_out     = NULL;
-    *num_pcds_out = 0;
-    return;
+    pcc_point_cloud_init(&((*pcds_out)[i]));
   }
 
-  if (decompressed_size < sizeof(uint32_t))
+  for (size_t i = 0; i < num_pcds; i++)
   {
-    free(decompressed);
-    *pcds_out     = NULL;
-    *num_pcds_out = 0;
-    return;
-  }
-
-  const char *ptr      = decompressed;
-  const char *end      = decompressed + decompressed_size;
-
-  // uint32_t    num_pcds = *(uint32_t *)ptr;
-  uint32_t    num_pcds = 0;
-  memcpy(&num_pcds, ptr, sizeof(uint32_t));
-  ptr += sizeof(uint32_t);
-
-  if (num_pcds == 0)
-  {
-    free(decompressed);
-    *pcds_out     = NULL;
-    *num_pcds_out = 0;
-    return;
-  }
-
-  pcc_point_cloud_t *pcds =
-      malloc(num_pcds * sizeof(pcc_point_cloud_t));
-  if (!pcds)
-  {
-    free(decompressed);
-    *pcds_out     = NULL;
-    *num_pcds_out = 0;
-    return;
-  }
-
-  memset(pcds, 0, num_pcds * sizeof(pcc_point_cloud_t));
-
-  for (uint32_t i = 0; i < num_pcds; i++)
-  {
-    if (ptr + sizeof(uint32_t) > end)
-    {
-      // corrupted
-      goto error_cleanup;
-    }
-    uint32_t size_i = *(uint32_t *)ptr;
-    ptr += sizeof(uint32_t);
-    if (ptr + size_i > end)
-    {
-      // corrupted
-      goto error_cleanup;
-    }
-
-    // Deserialize octree for this chunk
-    pcc_octree_t      oct = {0};
-    pcc_point_cloud_t pcd = {0};
+    size_t       lossly_len = 0;
+    pcc_octree_t oct        = {0};
     pcc_octree_init(&oct);
-    pcc_point_cloud_init(&pcd);
 
-    oct.read_from_buff(&oct, ptr, size_i);
-    pcd.read_from_octree(&pcd, oct);
+    memcpy(&lossly_len, ptr, sizeof(lossly_len));
+    ptr += sizeof(lossly_len);
+
+    oct.read_from_buff(&oct, ptr, lossly_len);
+    ptr += lossly_len;
+
+    (*pcds_out)[i].read_from_octree(&((*pcds_out)[i]), oct);
 
     pcc_octree_destroy(&oct);
-
-    pcds[i] = pcd;
-
-    ptr += size_i;
   }
-
-  free(decompressed);
-  *pcds_out     = pcds;
   *num_pcds_out = num_pcds;
-  return;
-
-error_cleanup:
-  for (uint32_t j = 0; j < num_pcds; j++)
-  {
-    free(pcds[j].positions);
-    free(pcds[j].colors);
-  }
-  free(pcds);
-  free(decompressed);
-  *pcds_out     = NULL;
-  *num_pcds_out = 0;
+  free(lossly_total);
 }
