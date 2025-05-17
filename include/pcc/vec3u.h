@@ -5,17 +5,7 @@
 
 typedef struct
 {
-  union
-  {
-    struct
-    {
-      uint8_t x, y, z;
-    };
-    struct
-    {
-      uint8_t r, g, b;
-    };
-  };
+  uint8_t x, y, z;
 } pcc_vec3u_t;
 
 static inline pcc_vec3u_t pcc_vec3u_add(const pcc_vec3u_t vec1,

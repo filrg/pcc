@@ -3,17 +3,7 @@
 
 typedef struct
 {
-  union
-  {
-    struct
-    {
-      float x, y, z;
-    };
-    struct
-    {
-      float r, g, b;
-    };
-  };
+  float x, y, z;
 } pcc_vec3f_t;
 
 static inline float pcc_absf(float value)
