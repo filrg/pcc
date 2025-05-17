@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['max_5fbound_0',['max_bound',['../structpcc__octree__node__t.html#a191a617635c0f3f75a753966a1f1e667',1,'pcc_octree_node_t']]],
-  ['min_5fbound_1',['min_bound',['../structpcc__octree__node__t.html#a96ebe17fe1a18d8cbfbde72274849925',1,'pcc_octree_node_t']]]
+  ['read_5ffrom_5fbuff_0',['read_from_buff',['../structpcc__octree__t.html#aacb28817fd1c1e9b9592e0ce3a8fb21c',1,'pcc_octree_t']]],
+  ['read_5ffrom_5ffile_1',['read_from_file',['../structpcc__point__cloud__t.html#a7d0b2e564f994d670c06c8150ff50d4f',1,'pcc_point_cloud_t']]],
+  ['read_5ffrom_5foctree_2',['read_from_octree',['../structpcc__point__cloud__t.html#a143003645753b474bb77adf18aa72c31',1,'pcc_point_cloud_t']]],
+  ['read_5ffrom_5fpoint_5fcloud_3',['read_from_point_cloud',['../structpcc__octree__t.html#acaa8a23e099a79d940297b7200e9184a',1,'pcc_octree_t']]],
+  ['root_4',['root',['../structpcc__octree__t.html#a8ecd8e090b11f5026a2ee2969a72ef5b',1,'pcc_octree_t']]]
 ];

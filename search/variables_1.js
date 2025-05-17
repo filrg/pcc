@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['children_0',['children',['../structpcc__octree__node__t.html#a717ac70bde3b7624b29fc442d8a6b75a',1,'pcc_octree_node_t']]],
-  ['color_1',['color',['../structpcc__octree__node__t.html#a1ec25c38acb1560c8c88d692fa10f37c',1,'pcc_octree_node_t']]],
-  ['colors_2',['colors',['../structpcc__point__cloud__t.html#afab2301b9bd18e1a7cb82f588b564516',1,'pcc_point_cloud_t']]],
-  ['count_3',['count',['../structpcc__octree__t.html#ac10dab99ff2df3076603b8b7bbedb2c5',1,'pcc_octree_t']]],
-  ['count_5fleaf_5fnodes_4',['count_leaf_nodes',['../structpcc__octree__t.html#a1411977bd9d8b9787859be1df73fa88e',1,'pcc_octree_t']]]
+  ['max_5fbound_0',['max_bound',['../structpcc__octree__node__t.html#a191a617635c0f3f75a753966a1f1e667',1,'pcc_octree_node_t']]],
+  ['min_5fbound_1',['min_bound',['../structpcc__octree__node__t.html#a96ebe17fe1a18d8cbfbde72274849925',1,'pcc_octree_node_t']]]
 ];

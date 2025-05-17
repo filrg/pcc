@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_0',['y',['../structpcc__vec3f__t.html#a15309711c4d4289786ad025c5f615b35',1,'pcc_vec3f_t::y'],['../structpcc__vec3u__t.html#a7cd61a00ab9689f721a681705d7fe46f',1,'pcc_vec3u_t::y']]]
+  ['z_0',['z',['../structpcc__vec3f__t.html#ae4a23527a4817cd65992d857031daad9',1,'pcc_vec3f_t::z'],['../structpcc__vec3u__t.html#ad47d6033cc17cc70e71b5e6b84e2e81b',1,'pcc_vec3u_t::z']]]
 ];
