@@ -1,1 +1,1 @@
-include("${CMAKE_CURRENT_LIST_DIR}/pcstreamTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/pccTargets.cmake")
