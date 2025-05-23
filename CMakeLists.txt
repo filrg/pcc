@@ -12,6 +12,12 @@ project(
 
 include(cmake/variables.cmake)
 
+option(USE_ZSTD "Use ZSTD to encode and decode" TRUE)
+
+if(USE_ZSTD)
+    include(cmake/dependencies/zstd.cmake)
+endif()
+
 # ---- Declare library ----
 
 file(GLOB PCC_SHARED_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/*)
@@ -23,13 +29,13 @@ target_include_directories(pcc_pcc PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/source/internal
 )
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(zstd REQUIRED IMPORTED_TARGET libzstd)
-
-target_link_libraries(
-    pcc_pcc PRIVATE
-    PkgConfig::zstd
-    )
+if(USE_ZSTD)
+    target_include_directories(pcc_pcc PRIVATE ${zstd_SOURCE_DIR}/lib)
+    target_link_libraries(
+        pcc_pcc PRIVATE
+        ${zstd_LIBS}
+        )
+endif()
 
 include(GenerateExportHeader)
 generate_export_header(

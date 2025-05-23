@@ -23,4 +23,23 @@ add_example(encode)
 add_example(decode)
 add_example(multiple_encode)
 add_example(multiple_decode)
+
+if(EMSCRIPTEN)
+    add_example(wasm_decode)
+    set_target_properties(wasm_decode PROPERTIES
+        OUTPUT_NAME "wasm_decode"
+        SUFFIX ".js"
+        )
+    target_compile_options(wasm_decode PRIVATE
+        "-sEXPORTED_FUNCTIONS=['_wasm_pcc_decode','_pcc_free']"
+        "-sEXPORTED_RUNTIME_METHODS=['ccall','cwrap']"
+        "-sALLOW_MEMORY_GROWTH=1"
+        )
+    target_link_options(wasm_decode PRIVATE
+        "-sEXPORTED_FUNCTIONS=['_wasm_pcc_decode','_pcc_free']"
+        "-sEXPORTED_RUNTIME_METHODS=['ccall','cwrap']"
+        "-sALLOW_MEMORY_GROWTH=1"
+        )
+endif()
+
 add_folders(Example)
