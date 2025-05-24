@@ -13,3 +13,5 @@ env.bat
 env.ps1
 cscope.out
 root/
+build_raw/
+rec/

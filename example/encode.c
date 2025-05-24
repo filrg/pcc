@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void write_to_file(const char  *filename,
-                   const char  *data,
-                   const size_t size)
+void write_to_file(const char    *filename,
+                   const char    *data,
+                   const uint64_t size)
 {
   FILE *fp = fopen(filename, "wb"); // "wb" = write binary
   if (!fp)
@@ -14,7 +14,7 @@ void write_to_file(const char  *filename,
     return;
   }
 
-  size_t written = fwrite(data, 1, size, fp);
+  uint64_t written = fwrite(data, 1, size, fp);
   if (written != size)
   {
     perror("Failed to write all data");
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 {
   pcc_point_cloud_t pcd   = {0};
   char             *wbuff = NULL;
-  size_t            wsize = 0;
+  uint64_t          wsize = 0;
 
   pcc_point_cloud_init(&pcd);
 

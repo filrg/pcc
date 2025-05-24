@@ -9,10 +9,10 @@ void write_to_file(const char  *filename,
                    const char  *data,
                    const size_t size)
 {
-  FILE  *fp      = NULL;
-  size_t written = 0;
+  FILE    *fp      = NULL;
+  uint64_t written = 0;
 
-  fp             = fopen(filename, "wb"); // "wb" = write binary
+  fp               = fopen(filename, "wb"); // "wb" = write binary
   if (!fp)
   {
     perror("Failed to open file");
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
   int                num_pcds;
   pcc_point_cloud_t *pcds  = NULL;
   char              *wbuff = NULL;
-  size_t             wsize = 0;
+  uint64_t           wsize = 0;
 
   struct timespec    start, end;
 
@@ -67,7 +67,8 @@ int main(int argc, char **argv)
 
   clock_gettime(CLOCK_MONOTONIC, &start);
   // timer
-  pcc_multiple_encode(pcds, (size_t)num_pcds, error, &wbuff, &wsize);
+  pcc_multiple_encode(
+      pcds, (uint64_t)num_pcds, error, &wbuff, &wsize);
 
   clock_gettime(CLOCK_MONOTONIC, &end);
 

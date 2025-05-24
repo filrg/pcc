@@ -5,14 +5,14 @@
 #include <stdlib.h>
 #include <time.h>
 
-char *read_from_file(const char *filename, size_t *out_size)
+char *read_from_file(const char *filename, uint64_t *out_size)
 {
-  FILE  *fp       = NULL;
-  long   filesize = 0;
-  char  *buffer   = NULL;
-  size_t read     = 0;
+  FILE    *fp       = NULL;
+  long     filesize = 0;
+  char    *buffer   = NULL;
+  uint64_t read     = 0;
 
-  fp              = fopen(filename, "rb");
+  fp                = fopen(filename, "rb");
   if (!fp)
   {
     perror("Failed to open file");
@@ -35,7 +35,7 @@ char *read_from_file(const char *filename, size_t *out_size)
   }
   rewind(fp);
 
-  buffer = malloc((size_t)filesize);
+  buffer = malloc((uint64_t)filesize);
   if (!buffer)
   {
     perror("malloc failed");
@@ -43,8 +43,8 @@ char *read_from_file(const char *filename, size_t *out_size)
     return NULL;
   }
 
-  read = fread(buffer, 1, (size_t)filesize, fp);
-  if (read != (size_t)filesize)
+  read = fread(buffer, 1, (uint64_t)filesize, fp);
+  if (read != (uint64_t)filesize)
   {
     perror("fread failed or incomplete");
     free(buffer);
@@ -59,11 +59,11 @@ char *read_from_file(const char *filename, size_t *out_size)
 
 int main(int argc, char **argv)
 {
-  size_t             rsize    = 0;
+  uint64_t           rsize    = 0;
   char              *rbuff    = NULL;
   pcc_point_cloud_t *pcds     = NULL;
-  size_t             num_pcds = 0;
-  size_t             i        = 0;
+  uint64_t           num_pcds = 0;
+  uint64_t           i        = 0;
   char               filename[512];
 
   struct timespec    start, end;

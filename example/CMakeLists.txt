@@ -40,6 +40,24 @@ if(EMSCRIPTEN)
         "-sEXPORTED_RUNTIME_METHODS=['ccall','cwrap']"
         "-sALLOW_MEMORY_GROWTH=1"
         )
+
+
+    add_example(wasm_multiple_decode)
+    set_target_properties(wasm_multiple_decode PROPERTIES
+        OUTPUT_NAME "wasm_multiple_decode"
+        SUFFIX ".js"
+        )
+    target_compile_options(wasm_multiple_decode PRIVATE
+        "-sEXPORTED_FUNCTIONS=['_wasm_pcc_multiple_decode','_pcc_free']"
+        "-sEXPORTED_RUNTIME_METHODS=['ccall','cwrap']"
+        "-sALLOW_MEMORY_GROWTH=1"
+        )
+    target_link_options(wasm_multiple_decode PRIVATE
+        "-sEXPORTED_FUNCTIONS=['_wasm_pcc_multiple_decode','_pcc_free']"
+        "-sEXPORTED_RUNTIME_METHODS=['ccall','cwrap']"
+        "-sALLOW_MEMORY_GROWTH=1"
+        )
+
 endif()
 
 add_folders(Example)

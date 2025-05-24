@@ -27,8 +27,10 @@ struct pcc_octree_t
   void (*read_from_point_cloud)(pcc_octree_t *,
                                 const pcc_point_cloud_t,
                                 const float);
-  void (*write_to_buff)(pcc_octree_t *, char **, size_t *);
-  void (*read_from_buff)(pcc_octree_t *, const char *, const size_t);
+  void (*write_to_buff)(pcc_octree_t *, char **, uint64_t *);
+  void (*read_from_buff)(pcc_octree_t *,
+                         const char *,
+                         const uint64_t);
 };
 
 PCC_EXPORT void pcc_octree_init(pcc_octree_t *self);
@@ -40,9 +42,9 @@ void            pcc_octree_read_from_point_cloud(pcc_octree_t           *self,
                                                  const float             error);
 void            pcc_octree_write_to_buff(pcc_octree_t *self,
                                          char        **data,
-                                         size_t       *size);
-void            pcc_octree_read_from_buff(pcc_octree_t *self,
-                                          const char   *data,
-                                          const size_t  size);
+                                         uint64_t     *size);
+void            pcc_octree_read_from_buff(pcc_octree_t  *self,
+                                          const char    *data,
+                                          const uint64_t size);
 
 #endif

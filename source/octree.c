@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 static void pcc_append_to_buffer_s(char      **data,
-                                   size_t     *size,
+                                   uint64_t   *size,
                                    const void *src,
-                                   size_t      len)
+                                   uint64_t    len)
 {
   *data = realloc(*data, *size + len);
   if (!*data)
@@ -19,7 +19,7 @@ static void pcc_append_to_buffer_s(char      **data,
 
 static void pcc_octree_node_write_to_buff_s(pcc_octree_node_t *curr,
                                             char             **data,
-                                            size_t            *size)
+                                            uint64_t          *size)
 {
   if (!curr)
   {
@@ -275,7 +275,7 @@ void pcc_octree_read_from_point_cloud(pcc_octree_t           *self,
 
 void pcc_octree_write_to_buff(pcc_octree_t *self,
                               char        **data,
-                              size_t       *size)
+                              uint64_t     *size)
 {
   self->count_leaf_nodes(self);
   pcc_append_to_buffer_s(
@@ -291,9 +291,9 @@ void pcc_octree_write_to_buff(pcc_octree_t *self,
   pcc_octree_node_write_to_buff_s(&(self->root), data, size);
 }
 
-void pcc_octree_read_from_buff(pcc_octree_t *self,
-                               const char   *data,
-                               const size_t  size)
+void pcc_octree_read_from_buff(pcc_octree_t  *self,
+                               const char    *data,
+                               const uint64_t size)
 {
   const char *ptr = data;
   const char *end = data + size;

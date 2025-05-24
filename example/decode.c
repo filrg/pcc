@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 // Reads the file and returns a heap-allocated buffer + its size
-char *read_from_file(const char *filename, size_t *out_size)
+char *read_from_file(const char *filename, uint64_t *out_size)
 {
   FILE *fp = fopen(filename, "rb");
   if (!fp)
@@ -31,7 +31,7 @@ char *read_from_file(const char *filename, size_t *out_size)
   rewind(fp); // Go back to beginning
 
   // Allocate buffer
-  char *buffer = malloc((size_t)filesize);
+  char *buffer = malloc((uint64_t)filesize);
   if (!buffer)
   {
     perror("malloc failed");
@@ -40,8 +40,8 @@ char *read_from_file(const char *filename, size_t *out_size)
   }
 
   // Read contents
-  size_t read = fread(buffer, 1, (size_t)filesize, fp);
-  if (read != (size_t)filesize)
+  uint64_t read = fread(buffer, 1, (uint64_t)filesize, fp);
+  if (read != (uint64_t)filesize)
   {
     perror("fread failed or incomplete");
     free(buffer);
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
 {
   pcc_point_cloud_t pcd   = {0};
   char             *rbuff = NULL;
-  size_t            rsize = 0;
+  uint64_t          rsize = 0;
 
   pcc_point_cloud_init(&pcd);
 
