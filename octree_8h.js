@@ -7,7 +7,7 @@ var octree_8h =
     [ "pcc_octree_init", "octree_8h.html#ae5ee54e67f01fb761e37ff47f234d531", null ],
     [ "pcc_octree_node_destroy", "octree_8h.html#a5c187264473b027562fbb9bfa30c98b0", null ],
     [ "pcc_octree_node_init", "octree_8h.html#a33f82bd8b159ca58a79e5f4521d17174", null ],
-    [ "pcc_octree_read_from_buff", "octree_8h.html#ad50a02751bb1cad94d9e70a25dc83a35", null ],
+    [ "pcc_octree_read_from_buff", "octree_8h.html#a5cca1677832a5d7fb161df68bbe11624", null ],
     [ "pcc_octree_read_from_point_cloud", "octree_8h.html#a57e049be3452b4202fa15f8f9583e9f2", null ],
-    [ "pcc_octree_write_to_buff", "octree_8h.html#a08f87a13b1a882c90261f4244cf6cb5f", null ]
+    [ "pcc_octree_write_to_buff", "octree_8h.html#a8c201062341105423234f5a2dc3d50db", null ]
 ];
