@@ -16,6 +16,16 @@ void pcc_free(void *ptr)
 }
 
 EMSCRIPTEN_KEEPALIVE
+void *pcc_malloc(uint32_t size)
+{
+  if (size != 0)
+  {
+    return malloc((size_t)size);
+  }
+  return NULL;
+}
+
+EMSCRIPTEN_KEEPALIVE
 pcc_point_cloud_t *wasm_pcc_multiple_decode(const char *rbuff,
                                             uint32_t    rsize,
                                             uint32_t   *num)
