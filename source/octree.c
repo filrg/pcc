@@ -64,7 +64,7 @@ pcc_octree_node_insert_point_s(pcc_octree_node_t *curr,
   pcc_vec3f_t center = pcc_vec3f_scale(
       pcc_vec3f_add(curr->min_bound, curr->max_bound),
       PCC_FLOAT_HALF);
-  if (pcc_vec3f_distance2(position, center) < error2)
+  if (pcc_vec3f_distance2(curr->min_bound, center) < error2)
   {
     curr->color = color;
     return;
