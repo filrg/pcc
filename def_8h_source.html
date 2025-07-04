@@ -98,21 +98,39 @@ $(document).ready(function(){initNavTree('def_8h_source.html',''); initResizable
   <div class="headertitle"><div class="title">def.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="def_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PCC_DEF_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PCC_DEF_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="def_8h.html#a0026ff78f19b1238529d2dcee38a64d5">    4</a></span><span class="preprocessor">#define PCC_INT_OCT    8</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="def_8h.html#a7d3a65cd248fb055082819f38ade9588">    5</a></span><span class="preprocessor">#define PCC_FLOAT_HALF 0.5F</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="def_8h.html#a31793bb62b70510e1f8d0307b43a548a">    6</a></span><span class="preprocessor">#define PCC_FLOAT_ZERO 1e-9F</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcc__point__cloud__t.html">pcc_point_cloud_t</a> <a class="code hl_struct" href="structpcc__point__cloud__t.html">pcc_point_cloud_t</a>;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcc__octree__node__t.html">pcc_octree_node_t</a> <a class="code hl_struct" href="structpcc__octree__node__t.html">pcc_octree_node_t</a>;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcc__octree__t.html">pcc_octree_t</a>      <a class="code hl_struct" href="structpcc__octree__t.html">pcc_octree_t</a>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructpcc__octree__node__t_html"><div class="ttname"><a href="structpcc__octree__node__t.html">pcc_octree_node_t</a></div><div class="ttdef"><b>Definition</b> octree.h:12</div></div>
-<div class="ttc" id="astructpcc__octree__t_html"><div class="ttname"><a href="structpcc__octree__t.html">pcc_octree_t</a></div><div class="ttdef"><b>Definition</b> octree.h:23</div></div>
-<div class="ttc" id="astructpcc__point__cloud__t_html"><div class="ttname"><a href="structpcc__point__cloud__t.html">pcc_point_cloud_t</a></div><div class="ttdef"><b>Definition</b> point_cloud.h:9</div></div>
+<a href="def_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* This file is part of PCC.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (C) 2025 FIL Research Group, ANSA Laboratory</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * PCC is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * it under the terms of the GNU General Public License as published</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * by the Free Software Foundation, either version 3 of the License,</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * along with this program.  If not, see</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef PCC_DEF_H</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define PCC_DEF_H</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="def_8h.html#a0026ff78f19b1238529d2dcee38a64d5">   22</a></span><span class="preprocessor">#define PCC_INT_OCT    8</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="def_8h.html#a7d3a65cd248fb055082819f38ade9588">   23</a></span><span class="preprocessor">#define PCC_FLOAT_HALF 0.5F</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="def_8h.html#a31793bb62b70510e1f8d0307b43a548a">   24</a></span><span class="preprocessor">#define PCC_FLOAT_ZERO 1e-9F</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcc__point__cloud__t.html">pcc_point_cloud_t</a> <a class="code hl_struct" href="structpcc__point__cloud__t.html">pcc_point_cloud_t</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcc__octree__node__t.html">pcc_octree_node_t</a> <a class="code hl_struct" href="structpcc__octree__node__t.html">pcc_octree_node_t</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcc__octree__t.html">pcc_octree_t</a>      <a class="code hl_struct" href="structpcc__octree__t.html">pcc_octree_t</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructpcc__octree__node__t_html"><div class="ttname"><a href="structpcc__octree__node__t.html">pcc_octree_node_t</a></div><div class="ttdef"><b>Definition</b> octree.h:30</div></div>
+<div class="ttc" id="astructpcc__octree__t_html"><div class="ttname"><a href="structpcc__octree__t.html">pcc_octree_t</a></div><div class="ttdef"><b>Definition</b> octree.h:41</div></div>
+<div class="ttc" id="astructpcc__point__cloud__t_html"><div class="ttname"><a href="structpcc__point__cloud__t.html">pcc_point_cloud_t</a></div><div class="ttdef"><b>Definition</b> point_cloud.h:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

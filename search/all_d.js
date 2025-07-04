@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['x_0',['x',['../structpcc__vec3f__t.html#a07fbc564349f457114215d4157153173',1,'pcc_vec3f_t::x'],['../structpcc__vec3u__t.html#ae72cb7bd24c3f83dcebdb670091708d8',1,'pcc_vec3u_t::x']]]
+  ['write_5fto_5fbuff_0',['write_to_buff',['../structpcc__octree__t.html#a250dd473056551076a3ffac63f5cdf30',1,'pcc_octree_t']]],
+  ['write_5fto_5ffile_1',['write_to_file',['../structpcc__point__cloud__t.html#a8a4b5daff939f0a73106427b4a57e81a',1,'pcc_point_cloud_t']]]
 ];

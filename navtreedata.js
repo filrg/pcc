@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "libpcc", "index.html", [
-    [ "pcc", "index.html", "index" ],
+    [ "PCC: Point Cloud Compression Tools", "index.html", "index" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],

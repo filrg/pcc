@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['pcc_0',['pcc',['../index.html',1,'']]],
-  ['pcc_2eh_1',['pcc.h',['../pcc_8h.html',1,'']]],
+  ['pcc_2eh_0',['pcc.h',['../pcc_8h.html',1,'']]],
+  ['pcc_3a_20point_20cloud_20compression_20tools_1',['PCC: Point Cloud Compression Tools',['../index.html',1,'']]],
   ['pcc_5fabsf_2',['pcc_absf',['../vec3f_8h.html#a5a5ec77737a5be134289e8c94e825bda',1,'vec3f.h']]],
   ['pcc_5fdecode_3',['pcc_decode',['../pcc_8h.html#ac6c6bebf15415df776f4d55ff568f01a',1,'pcc.h']]],
   ['pcc_5fencode_4',['pcc_encode',['../pcc_8h.html#a0586203b6465fd9d4f26d3ec55244f8c',1,'pcc.h']]],
@@ -43,6 +43,7 @@ var searchData=
   ['pcc_5fvec3u_5fscale_5freverse_40',['pcc_vec3u_scale_reverse',['../vec3u_8h.html#a22f94110e809b85bb1f3058b09b623a6',1,'vec3u.h']]],
   ['pcc_5fvec3u_5fsub_41',['pcc_vec3u_sub',['../vec3u_8h.html#a1f7b614049828c698892eeb056c5b212',1,'vec3u.h']]],
   ['pcc_5fvec3u_5ft_42',['pcc_vec3u_t',['../structpcc__vec3u__t.html',1,'']]],
-  ['point_5fcloud_2eh_43',['point_cloud.h',['../point__cloud_8h.html',1,'']]],
-  ['positions_44',['positions',['../structpcc__point__cloud__t.html#a08c2f84c5e31195445a33de1f1055197',1,'pcc_point_cloud_t']]]
+  ['point_20cloud_20compression_20tools_43',['PCC: Point Cloud Compression Tools',['../index.html',1,'']]],
+  ['point_5fcloud_2eh_44',['point_cloud.h',['../point__cloud_8h.html',1,'']]],
+  ['positions_45',['positions',['../structpcc__point__cloud__t.html#a08c2f84c5e31195445a33de1f1055197',1,'pcc_point_cloud_t']]]
 ];
