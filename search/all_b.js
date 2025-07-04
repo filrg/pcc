@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tools_0',['PCC: Point Cloud Compression Tools',['../index.html',1,'']]]
+  ['size_0',['size',['../structpcc__point__cloud__t.html#a35f1d1e9e33db6023aad9a88e38a5367',1,'pcc_point_cloud_t']]],
+  ['supported_20codecs_1',['Currently supported codecs',['../index.html#autotoc_md1',1,'']]]
 ];

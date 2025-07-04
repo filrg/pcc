@@ -93,18 +93,36 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">PCC: Point Cloud Compression Tools </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> An open-source implementation in <b>C/C++</b> of the point cloud compression method proposed by J. Kammerl et al., “Real-time compression of point cloud streams,” <em>2012 IEEE International Conference on Robotics and Automation (ICRA)</em>, pp. 778–785. <a href="https://doi.org/10.1109/ICRA.2012.6224647">doi:10.1109/ICRA.2012.6224647</a></p>
-<p>This project is an <b>ongoing effort</b> to reimplement the original approach in C/C++, with a focus on simplicity, clarity, and ease of integration into modern applications. Example usage of the project can be found <a href="https://quangnguyenlong.github.io/vvideojs">here (demo viewer)</a> and <a href="https://github.com/filrg/pcs">here (integration repo)</a>.</p>
-<p>Note: This is a work in progress and may not yet cover all features described in the original paper.</p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> A lightweight, modular C/C++ library for <b>real-time point cloud compression and streaming</b>, meant for:</p><ul>
+<li>Fast decoding for low-latency streaming and playback <br  />
+</li>
+<li>Supports multiple codecs</li>
+<li>Minimal dependencies, easy to integrate.</li>
+</ul>
 <h1><a class="anchor" id="autotoc_md1"></a>
+Currently supported codecs</h1>
+<ul>
+<li><b>J. Kammerl et al.</b>, “Real-time compression of point cloud streams,” 2012 IEEE International Conference on Robotics and Automation (ICRA), pp. 778–785. <a href="https://doi.org/10.1109/ICRA.2012.6224647">doi:10.1109/ICRA.2012.6224647</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Building and installing</h1>
 <p>See the BUILDING document.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Contributing</h1>
 <p>See the CONTRIBUTING document.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Licensing</h1>
-<p>This project is licensed under the terms of the [GNU General Public License v3.0](LICENSE). </p>
+<p>This project is licensed under the terms of the [GNU General Public License v3.0](LICENSE).</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Example usages</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Project   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a href="https://quangnguyenlong.github.io/vvideojs">vvideojs</a>   </td><td class="markdownTableBodyNone">Web-based point cloud viewer with real-time decoding    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a href="https://github.com/filrg/pcs">pcs</a>   </td><td class="markdownTableBodyNone">C++ integration with streaming pipeline   </td></tr>
+</table>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
