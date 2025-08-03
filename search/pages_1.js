@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pcc_3a_20point_20cloud_20compression_20tools_0',['PCC: Point Cloud Compression Tools',['../index.html',1,'']]],
-  ['point_20cloud_20compression_20tools_1',['PCC: Point Cloud Compression Tools',['../index.html',1,'']]]
+  ['badge_20svg_20alt_20ci_0',['PCC: Point Cloud Compression Tools &lt;img src=&quot;../../actions/workflows/ci.yml/badge.svg&quot; alt=&quot;CI&quot;/&gt;',['../index.html',1,'']]]
 ];
