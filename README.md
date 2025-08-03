@@ -1,4 +1,4 @@
-# PCC: Point Cloud Compression Tools
+# PCC: Point Cloud Compression Tools ![CI](../../actions/workflows/ci.yml/badge.svg)
 
 A lightweight, modular C/C++ library for **real-time point cloud compression and streaming**, meant for:
 - Fast decoding for low-latency streaming and playback  
