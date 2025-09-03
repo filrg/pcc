@@ -245,41 +245,42 @@ void pcc_octree_read_from_point_cloud(pcc_octree_t           *self,
     return;
   }
 
-  pcc_vec3f_t max_bound = {
-      .x = -FLT_MAX, .y = -FLT_MAX, .z = -FLT_MAX};
-  pcc_vec3f_t min_bound = {.x = FLT_MAX, .y = FLT_MAX, .z = FLT_MAX};
+  float max_bound = -FLT_MAX;
+  float min_bound = FLT_MAX;
 
   for (uint32_t i = 0; i < pcd.size; i++)
   {
     pcc_vec3f_t pnt = ((pcc_vec3f_t *)pcd.positions)[i];
-    if (max_bound.x < pnt.x)
+    if (max_bound < pnt.x)
     {
-      max_bound.x = pnt.x;
+      max_bound = pnt.x;
     }
-    if (max_bound.y < pnt.y)
+    if (max_bound < pnt.y)
     {
-      max_bound.y = pnt.y;
+      max_bound = pnt.y;
     }
-    if (max_bound.z < pnt.z)
+    if (max_bound < pnt.z)
     {
-      max_bound.z = pnt.z;
+      max_bound = pnt.z;
     }
-    if (min_bound.x > pnt.x)
+    if (min_bound > pnt.x)
     {
-      min_bound.x = pnt.x;
+      min_bound = pnt.x;
     }
-    if (min_bound.y > pnt.y)
+    if (min_bound > pnt.y)
     {
-      min_bound.y = pnt.y;
+      min_bound = pnt.y;
     }
-    if (min_bound.z > pnt.z)
+    if (min_bound > pnt.z)
     {
-      min_bound.z = pnt.z;
+      min_bound = pnt.z;
     }
   }
 
-  self->root.max_bound = max_bound;
-  self->root.min_bound = min_bound;
+  self->root.max_bound =
+      (pcc_vec3f_t){max_bound, max_bound, max_bound};
+  self->root.min_bound =
+      (pcc_vec3f_t){min_bound, min_bound, min_bound};
 
   for (uint32_t i = 0; i < pcd.size; i++)
   {
